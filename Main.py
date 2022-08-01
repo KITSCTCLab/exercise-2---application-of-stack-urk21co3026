@@ -19,31 +19,16 @@ class Evaluate:
 
 
   def isEmpty(self):
-    """
-    Check whether the stack is empty.
-    Returns:
-      True if it is empty, else returns False.
-      
-    """
-      if len(self.stack) == 0:
-        return True
+    if len(self.stack) == 0:
+      return True
     else:
-        return False
+      return False
 
 
   def pop(self):
-    """
-    Do pop operation if the stack is not empty.
-    Returns:
-      The data which is popped out if the stack is not empty.
-      f len(self.stack) > 0:
-        x = self.stack.pop()
-        return x
-
-    """
-      f len(self.stack) > 0:
-        x = self.stack.pop()
-        return x
+    if len(self.stack) > 0:
+      x = self.stack.pop()
+      return x
    
 
 
@@ -58,66 +43,33 @@ class Evaluate:
 
 
   def validate_postfix_expression(self, expression):
-    """
-    Check whether the expression is a valid postfix expression.
-    Arguments:
-      expression: A String which represents the expression to be validated.
-    Returns:
-      True if the expression is valid, else returns False.
-      value = True
-    
+    value = True
     valid = ['+','-','*','/']
-    
     for char in expression:
-        if char.isdigit or char in valid:
-            continue
-        else:
-            value = False
-    
-    return value
-
-
-    """
-       value = True
-    
-    valid = ['+','-','*','/']
-    
-    for char in expression:
-        if char.isdigit or char in valid:
-            continue
-        else:
-            value = False
-    
-    return value
+      if char.isdigit or char in valid:
+        continue
+      else:
+        value = False
+        return value
     
 
 
   def evaluate_postfix_expression(self, expression):
-    """
-    Evaluate the postfix expression
-    Arguments:
-      expression: A String which represents the the expression to be evaluated
-    Returns:
-      The result of evaluated postfix expression.
-
-    """
-      for char in expression:
-        if char.isdigit():
-            self.push(char)
-        else:
-            b = int(self.pop())
-            a = int(self.pop())
-            
-            if char == "+":
-                result = a + b
-            elif char == "-":
-                result = a - b
-            elif char == '*':
-                result = a * b
-            elif char == '/':
-                result = a / b
-            
-            self.push(result)
+    for char in expression:
+      if char.isdigit():
+        self.push(char)
+      else:
+        b = int(self.pop())
+        a = int(self.pop())
+      if char == "+":
+        result = a + b
+      elif char == "-":
+        result = a - b
+      elif char == '*':
+        result = a * b
+      elif char == '/':
+        result = a / b
+      self.push(result)
     
     return int(self.stack[0])
   
